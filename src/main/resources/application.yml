@@ -1,0 +1,25 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://112.74.38.117:3306/hongfengstore?useUnicode=true&characterEncoding=utf-8
+    username: root
+    password: 123456
+  thymeleaf:
+    cache: false
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  jackson:
+    serialization: true
+
+logging:
+ level: info
+# JWT 
+jwt.header:Authorization
+jwt.secret:mySecret
+jwt.expiration:10
+jwt.tokenHead:Bearer
+jwt.route.authentication.path:auth/login
+jwt.route.authentication.refresh:auth/refresh
+
