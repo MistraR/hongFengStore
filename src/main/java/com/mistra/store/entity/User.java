@@ -1,5 +1,6 @@
-package com.mistra.store.dao;
+package com.mistra.store.entity;
 
+import com.mistra.store.util.hibernate.BaseEntity;
 import lombok.Data;
 
 import javax.persistence.Entity;
@@ -11,7 +12,7 @@ import javax.persistence.Entity;
  */
 @Entity
 @Data
-public class User {
+public class User extends BaseEntity {
 
     private String username;
 
