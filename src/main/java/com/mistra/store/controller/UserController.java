@@ -1,6 +1,8 @@
 package com.mistra.store.controller;
 
 import com.mistra.store.entity.User;
+import com.mistra.store.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,18 +17,26 @@ import javax.servlet.http.HttpServletRequest;
  * Describe:
  */
 @Controller
-@RequestMapping("/user")
 public class UserController {
 
-    @RequestMapping("/login")
-    public String login(User user){
-        System.out.println(user.getUsername());
-        return "index";
+    @Autowired
+    private UserService userService;
+
+    @RequestMapping("/")
+    public String toLogin() {
+        return "login";
     }
 
-    @RequestMapping("/hello")
-    public String index(HttpServletRequest request, @RequestParam(value = "name", required = false, defaultValue = "springboot-thymeleaf") String name){
-        request.setAttribute("name", name);
-        return "hello";
+
+    @RequestMapping("/login")
+    public String login(HttpServletRequest request, User user) {
+        if (userService.login(user)) {
+            return "index";
+        } else {
+            request.setAttribute("error", "用户名或密码输入错误！");
+            return "login";
+        }
+
     }
+
 }

@@ -8,5 +8,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * Time: 2018/7/20/020
  * Describe:
  */
-public interface UserRepoistory extends JpaRepository<User,Long> {
+public interface UserRepository extends JpaRepository<User,Long> {
+
+    User findByUsernameAndPassword(String username,String password);
 }
