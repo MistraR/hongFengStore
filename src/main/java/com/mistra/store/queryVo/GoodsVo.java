@@ -1,12 +1,14 @@
 package com.mistra.store.queryVo;
 
 import io.swagger.annotations.ApiParam;
+import lombok.Data;
 
 /**
  * Author: RoronoaZoro丶WangRui
  * Time: 2018/7/22/022
  * Describe:
  */
+@Data
 public class GoodsVo {
 
     @ApiParam("名称")

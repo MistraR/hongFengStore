@@ -16,6 +16,8 @@ public interface GoodsService {
 
     void delete(Long id);
 
+    Goods findOne(Long id);
+
     void update(Goods goods);
 
     Pager pageSelect(PageCondition condition,GoodsVo goodsVo);
