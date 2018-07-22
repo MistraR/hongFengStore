@@ -22,7 +22,7 @@ public class Goods extends BaseEntity {
 
     @ApiParam("商品所属类目")
     @ManyToOne
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "Category_id")
     private GoodsCategory goodsCategory;
 
     @ApiParam("进价")
