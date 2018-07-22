@@ -27,7 +27,6 @@ public class UserController {
         return "login";
     }
 
-
     @RequestMapping("/login")
     public String login(HttpServletRequest request, User user) {
         if (userService.login(user)) {

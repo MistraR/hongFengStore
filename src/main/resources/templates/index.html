@@ -11,8 +11,52 @@
 </head>
 
 <body>
+<div class="container">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="" id="goodsList">
+            <div class="" id="goodsListHeader">
+
+            </div>
+            <div class="" id="goodsListBody">
+                <table border="1">
+                    <tr>
+                        <th>商品名称</th>
+                        <th>编号</th>
+                        <th>分类</th>
+                        <th>进价</th>
+                        <th>批发价</th>
+                        <th>零售价</th>
+                        <th>单位</th>
+                        <th>库存情况</th>
+                    </tr>
+                    <tr th:each="goods : ${goodsList}">
+                        <td th:text="${goods.name}"></td>
+                        <td th:text="${goods.number}"></td>
+                        <th th:text="${goods.index}"></th>
+                        <th th:text="${goods.purchasePrice}"></th>
+                        <th th:text="${goods.wholesalePrice}"></th>
+                        <th th:text="${goods.retailPrice}"></th>
+                        <th th:text="${goods.standard}"></th>
+                        <th th:text="${goods.inventorySituation}"></th>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="" id="categoryList">
+        <div class="" id="categoryListHeader">
+
+        </div>
+        <div class="" id="categoryListBody">
+
+        </div>
+    </div>
+</div>
+</div>
 <h1>index页面</h1>
-<p th:text="'hello, ' + ${error} + '!'" />
+<p th:text="'hello, ' + ${error} + '!'"/>
+
+
 <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
 <script src="../static/js/bootstrap/bootstrap.min.js"></script>
 <script type="text/javascript" src="../static/js/index.js"></script>

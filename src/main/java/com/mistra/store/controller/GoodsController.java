@@ -1,6 +1,6 @@
 package com.mistra.store.controller;
 
-import com.mistra.store.service.GoodsCategoryService;
+import com.mistra.store.service.GoodsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
@@ -10,9 +10,9 @@ import org.springframework.stereotype.Controller;
  * Describe:
  */
 @Controller
-public class GoodsCategoryController {
+public class GoodsController {
 
     @Autowired
-    private GoodsCategoryService goodsCategoryService;
+    private GoodsService goodsService;
 
 }

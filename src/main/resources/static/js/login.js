@@ -2,7 +2,7 @@ function login() {
     $.ajax({
         type: "POST",
         dataType: "json",
-        url: "http://localhost:8080/login?" + new Date() ,
+        url: "/login",
         data: $('.login-form').serialize(),
         success: function (result) {
             console.log(result);

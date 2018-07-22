@@ -28,12 +28,12 @@ public class BaseEntity  implements Serializable  {
     @ApiParam("主键ID")
     protected Long id;
 
-    @CreatedDate
+    /*@CreatedDate
     @ApiParam("创建时间")
     protected Date createTime;
 
     @LastModifiedDate
     @ApiParam("更新时间")
-    protected Date modifyTime;
+    protected Date modifyTime;*/
 
 }
