@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * Describe:
  */
 @Controller
+@RequestMapping("/goods")
 public class GoodsController {
 
     @Autowired

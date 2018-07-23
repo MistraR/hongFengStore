@@ -7,6 +7,7 @@ import com.mistra.store.util.web.annotation.ListAllUrl;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -16,6 +17,7 @@ import javax.servlet.http.HttpServletRequest;
  * Describe:
  */
 @Controller
+@RequestMapping("/category")
 public class GoodsCategoryController {
 
     @Autowired

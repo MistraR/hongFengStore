@@ -1,14 +1,20 @@
-function login() {
-    $.ajax({
-        type: "POST",
-        dataType: "json",
-        url: "/login",
-        data: $('.login-form').serialize(),
-        success: function (result) {
-            console.log(result);
-        },
-        error : function() {
-            alert("异常！");
-        }
+/*
+$(function () {
+    $("#submit").click(function (e) {
+        e.preventDefault();
+        $.ajax({
+            type: "POST",
+            url: "/login",
+            data: {"username":$("#username").val(),"password":$("#password").val()},
+            success: function (result) {
+                $("body").html(result);
+                console.log(result);
+                location.href="";
+            },
+            error : function() {
+                alert("异常！");
+            }
+        });
     });
-}
+})
+*/
