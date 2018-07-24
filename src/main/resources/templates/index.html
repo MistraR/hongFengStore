@@ -29,16 +29,18 @@
                         <th>零售价</th>
                         <th>单位</th>
                         <th>库存情况</th>
+                        <th>创建时间</th>
                     </tr>
-                    <tr th:each="goods : ${goodsList}">
+                    <tr th:each="goods : ${model.content}">
                         <td th:text="${goods.name}"></td>
                         <td th:text="${goods.number}"></td>
-                        <th th:text="${goods.index}"></th>
+                        <th th:text="${goods.category}"></th>
                         <th th:text="${goods.purchasePrice}"></th>
                         <th th:text="${goods.wholesalePrice}"></th>
                         <th th:text="${goods.retailPrice}"></th>
                         <th th:text="${goods.standard}"></th>
                         <th th:text="${goods.inventorySituation}"></th>
+                        <th th:text="${goods.createTime}"></th>
                     </tr>
                 </table>
             </div>

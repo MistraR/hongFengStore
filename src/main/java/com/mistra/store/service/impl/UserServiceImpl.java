@@ -6,6 +6,8 @@ import com.mistra.store.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * Author: RoronoaZoro丶WangRui
  * Time: 2018/7/20/020
@@ -18,7 +20,7 @@ public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
 
     @Override
-    public boolean login(User user) {
+    public boolean login( User user) {
         User user1 = userRepository.findByUsernameAndPassword(user.getUsername(), user.getPassword());
         if (user1 != null) {
             return true;
