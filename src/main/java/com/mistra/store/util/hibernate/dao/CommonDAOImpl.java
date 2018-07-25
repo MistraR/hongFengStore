@@ -48,8 +48,8 @@ public class CommonDAOImpl implements CommonDAO {
         }
         for (int i = 0; i < helper.getParameters().size(); i++) {
             Object p = helper.getParameters().get(i);
-            contentQuery.setParameter(i + 1, p);
-            countQuery.setParameter(i + 1, p);
+            contentQuery.setParameter(i , p);
+            countQuery.setParameter(i , p);
         }
         contentQuery.setFirstResult(helper.getCurrentPage() * helper.getPageSize());
         contentQuery.setMaxResults(helper.getPageSize());

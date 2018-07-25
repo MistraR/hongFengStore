@@ -48,13 +48,12 @@ public class GoodsServiceImpl implements GoodsService {
 
     @Override
     public Pager pageSelect(PageCondition condition, GoodsVo goodsVo) {
-        QueryHelper helper = new QueryHelper(Goods.class)
-                .addCondition(StringUtils.isNotBlank(goodsVo.getName()), "name like %" + goodsVo.getName() + "%")
-                .addCondition(StringUtils.isNotBlank(goodsVo.getNumber()), "number like %" + goodsVo.getNumber() + "%")
-                .addCondition(StringUtils.isNotBlank(goodsVo.getGoodsCategory()), "category like %" + goodsVo.getGoodsCategory() + "%")
+        QueryHelper helper = new QueryHelper(Goods.class,"g")
+                .addCondition(StringUtils.isNotBlank(goodsVo.getName()), " name like ? ","%" + goodsVo.getName() + "%")
+                .addCondition(StringUtils.isNotBlank(goodsVo.getNumber()), " number like ? ","%" + goodsVo.getNumber() + "%")
                 .setPageCondition(condition)
                 .useNativeSql(false);
-        Pager pager = commonDAO.findPager(helper);
+        Pager<Goods> pager = commonDAO.findPager(helper);
         return pager;
     }
 }
