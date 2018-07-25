@@ -7,48 +7,76 @@
 
     <link rel="stylesheet" type="text/css" href="../static/css/bootstrap/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="../static/css/index.css"/>
-    <title>首页</title>
+    <title>商品列表</title>
 </head>
 
 <body>
-<h1>index页面</h1>
 <div class="container">
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
         <div class="" id="goodsList">
-            <div class="" id="goodsListHeader">
-
-            </div>
-            <div class="" id="goodsListBody">
-                <table border="1">
-                    <tr>
-                        <th>商品名称</th>
-                        <th>编号</th>
-                        <th>分类</th>
-                        <th>进价</th>
-                        <th>批发价</th>
-                        <th>零售价</th>
-                        <th>单位</th>
-                        <th>库存情况</th>
-                        <th>创建时间</th>
-                    </tr>
-                    <tr th:each="goods : ${model.content}">
-                        <td th:text="${goods.name}"></td>
-                        <td th:text="${goods.number}"></td>
-                        <th th:text="${goods.category}"></th>
-                        <th th:text="${goods.purchasePrice}"></th>
-                        <th th:text="${goods.wholesalePrice}"></th>
-                        <th th:text="${goods.retailPrice}"></th>
-                        <th th:text="${goods.standard}"></th>
-                        <th th:text="${goods.inventorySituation}"></th>
-                        <th th:text="${goods.createTime}"></th>
-                    </tr>
-                </table>
-            </div>
+            <form id="selectPage_form" method="post" action="/goods/listSelect">
+                <div class="page-header">
+                    <h1>鸿丰玉雕&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small>中国瑞丽口岸德龙珠宝城D区5-6号-13988238325(黄先生)</small>
+                    </h1>
+                </div>
+                <div class="" id="goodsListHeader">
+                    <span class="label label-info">按条件搜索:</span><input name="number" id="number" class="form-control"
+                                                                       placeholder="商品编号" autofocus>
+                    <input name="name" id="name" class="form-control" placeholder="商品名称">
+                    <button class="btn btn-md btn-success btn-block" type="button">搜索</button>
+                </div>
+                <div class="" id="goodsListBody">
+                    <table class="table">
+                        <tr>
+                            <th>商品名称</th>
+                            <th>编号</th>
+                            <th>分类</th>
+                            <th>进货价</th>
+                            <th>批发价</th>
+                            <th>零售价</th>
+                            <th>单位</th>
+                            <th>库存情况</th>
+                            <th>创建时间</th>
+                            <th></th>
+                        </tr>
+                        <tr th:each="goods : ${model.content}">
+                            <td th:text="${goods.name}"></td>
+                            <td th:text="${goods.number}"></td>
+                            <th th:text="${goods.category}"></th>
+                            <th th:text="${goods.purchasePrice}"></th>
+                            <th th:text="${goods.wholesalePrice}"></th>
+                            <th th:text="${goods.retailPrice}"></th>
+                            <th th:text="${goods.standard}"></th>
+                            <th th:text="${goods.inventorySituation}"></th>
+                            <th th:text="${goods.createTime}"></th>
+                            <th>
+                                <button class="btn btn-sm btn-success btn-block" type="button">编辑</button>
+                            </th>
+                        </tr>
+                    </table>
+                </div>
+                <div class="" id="goodsListPager">
+                    <nav aria-label="Page navigation">
+                        <ul class="pagination">
+                            <li>
+                                <a href="#" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                </a>
+                            </li>
+                            <li><a>第<span th:text="${model.pageNumber+1}"></span>页</a></li>
+                            <li>
+                                <a href="#" aria-label="Next">
+                                    <span aria-hidden="true">&raquo;</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </form>
         </div>
     </div>
 </div>
 </div>
-
 
 
 <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>

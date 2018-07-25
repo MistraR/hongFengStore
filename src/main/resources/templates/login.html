@@ -20,6 +20,7 @@
                     <input name="username" id="username" class="form-control" placeholder="用户名" required autofocus>
                     <label for="password" class="sr-only">密码</label>
                     <input type="password" name="password" id="password" class="form-control" placeholder="密码" required>
+                    <label th:text="${error}" id="error_label"></label>
                     <button class="btn btn-lg btn-primary btn-block" type="submit" >登录</button>
                 </form>
             </div>

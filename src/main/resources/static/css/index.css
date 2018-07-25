@@ -1,0 +1,24 @@
+#selectPage_form #goodsListHeader{
+    margin: 50px auto 50px auto ;
+}
+#selectPage_form #goodsListHeader span:first-child{
+    float: left;
+    width: 115px;
+    height: 34px;
+    font-size: 18px;
+    margin-right: 15px;
+    line-height: 28px;
+}
+#selectPage_form #goodsListHeader input{
+    width: 200px;
+}
+#selectPage_form #goodsListHeader input{
+    float: left;
+    margin-right: 50px;
+}
+#goodsListPager{
+    float: right;
+}
+#goodsListHeader button{
+    width: 100px;
+}

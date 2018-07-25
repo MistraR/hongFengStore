@@ -51,7 +51,6 @@ public class UserController {
             request.setAttribute("error", "用户名或密码输入错误！");
             return "login";
         }
-
     }
 
 }

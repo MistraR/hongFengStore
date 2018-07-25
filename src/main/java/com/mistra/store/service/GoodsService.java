@@ -5,6 +5,8 @@ import com.mistra.store.queryVo.GoodsVo;
 import com.mistra.store.util.hibernate.PageCondition;
 import com.mistra.store.util.hibernate.Pager;
 
+import java.util.List;
+
 /**
  * Author: RoronoaZoro丶WangRui
  * Time: 2018/7/22/022

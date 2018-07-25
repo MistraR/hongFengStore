@@ -17,7 +17,7 @@ html, body {
     /*background-color: #ce8483;
     border: #ce8483 1px solid;
     border-radius:15px ;*/
-    margin:300px auto auto auto;
+    margin:250px auto auto auto;
 }
 .login-form-title span{
     font-size: 15px;
@@ -28,7 +28,11 @@ html, body {
 }
 .login-form #password{
     width: 250px;
-    margin: auto auto 30px 25px;
+    margin: auto auto 15px 25px;
+}
+.login-form #error_label{
+    color: red;
+    margin-left: 70px;
 }
 .login-form .btn{
     width: 250px;
