@@ -20,12 +20,71 @@
             </div>
             <div class="" id="goodsListHeader">
                 <span class="label label-info">按条件搜索:</span>
-                <input id="number" class="form-control" placeholder="商品编号" style=" width: 200px;" autofocus>
-                <input id="goodsName" class="form-control" placeholder="商品名称" style=" width: 200px;">
+                <input id="number" class="form-control" placeholder="商品编号" autofocus>
+                <input id="goodsName" class="form-control" placeholder="商品名称">
                 <button class="btn btn-md btn-success btn-block" type="button" id="searchButton">搜索</button>
             </div>
             <div>
-                <button class="btn btn-md btn-warning btn-block" type="button" id="addButton">录入商品</button>
+                <button class="btn btn-md btn-warning btn-block" type="button" id="addButton" data-toggle="modal"
+                        data-target="#myModal">录入商品
+                </button>
+            </div>
+            <!-- Modal -->
+            <div class="modal fade bs-example-modal-sm" id="myModal" tabindex="-1" role="dialog"
+                 aria-labelledby="myModalLabel">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                    aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="myModalLabel">新增商品</h4>
+                        </div>
+                        <div class="modal-body">
+                            <form id="addForm">
+                                <url>
+                                    <li><input id="addGoodsName" class="form-control" placeholder="商品名称" required
+                                               autofocus>
+                                    </li>
+                                    <li><input id="addGoodsNumber" class="form-control" placeholder="商品编号" required>
+                                    </li>
+                                    <li><input id="addGoodsPurchasePrice" class="form-control" placeholder="进货价(元)"
+                                               required>
+                                    </li>
+                                    <li><input id="addGoodsRetailPrice" class="form-control" placeholder="零售价(元)"
+                                               required>
+                                    </li>
+                                    <li><input id="addGoodsWholesalePrice" class="form-control" placeholder="批发价(元)"
+                                               required>
+                                    </li>
+                                    <li>
+                                        <select class="form-control" id="addGoodsStandard">
+                                            <option selected>个</option>
+                                            <option>台</option>
+                                            <option>斤</option>
+                                            <option>支</option>
+                                            <option>把</option>
+                                            <option>包</option>
+                                            <option>袋</option>
+                                            <option>张</option>
+                                            <option>其他</option>
+                                        </select>
+                                    </li>
+                                    <li>
+                                        <select class="form-control" id="addGoodsInventorySituation">
+                                            <option selected>库存充足</option>
+                                            <option>库存数量少</option>
+                                            <option>无货</option>
+                                        </select>
+                                    </li>
+                                </url>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                            <button type="button" class="btn btn-primary" onclick="save()">保存</button>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="" id="goodsListBody">
                 <table class="table" id="goodsListTable">
@@ -33,10 +92,10 @@
                     <tr>
                         <th>商品名称</th>
                         <th>编号</th>
-                        <th>分类</th>
-                        <th>进货价</th>
-                        <th>零售价</th>
-                        <th>批发价</th>
+                        <!--<th>分类</th>-->
+                        <th>进货价(元)</th>
+                        <th>零售价(元)</th>
+                        <th>批发价(元)</th>
                         <th>单位</th>
                         <th>库存情况</th>
                         <th>创建时间</th>
@@ -47,7 +106,7 @@
                     <tr th:each="goods : ${model.content}">
                         <td th:text="${goods.name}"></td>
                         <td th:text="${goods.number}"></td>
-                        <th th:text="${goods.category}"></th>
+                        <!--<th th:text="${goods.category}"></th>-->
                         <th th:text="${goods.purchasePrice}"></th>
                         <th th:text="${goods.retailPrice}" id="retailPriceColor"></th>
                         <th th:text="${goods.wholesalePrice}"></th>
@@ -55,9 +114,72 @@
                         <th th:text="${goods.inventorySituation}"></th>
                         <th th:text="${goods.createTime}"></th>
                         <th>
-                            <button class="btn btn-sm btn-danger btn-block" type="button">编辑</button>
+                            <button class="btn btn-md btn-danger btn-block" type="button" id="editButton"
+                                    th:data="${goods.id}" onclick="toEdit()"
+                                    data-toggle="modal"
+                            >编辑
+                            </button>
                         </th>
                     </tr>
+                    <div class="modal fade bs-example-modal-sm" id="myEditModal" tabindex="-1" role="dialog"
+                         aria-labelledby="myModalLabel">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                            aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title" id="myModalLabel">编辑商品</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <form id="editForm">
+                                        <url>
+                                            <li><input id="editGoodsName" class="form-control" placeholder="商品名称"
+                                                       required
+                                                       autofocus></li>
+                                            <li><input id="editGoodsNumber" class="form-control" placeholder="商品编号"
+                                                       required></li>
+                                            <li><input id="editGoodsPurchasePrice" class="form-control"
+                                                       placeholder="进货价(元)"
+                                                       required>
+                                            </li>
+                                            <li><input id="editGoodsRetailPrice" class="form-control"
+                                                       placeholder="零售价(元)"
+                                                       required>
+                                            </li>
+                                            <li><input id="editGoodsWholesalePrice" class="form-control"
+                                                       placeholder="批发价(元)" required>
+                                            </li>
+                                            <li>
+                                                <select class="form-control" id="editGoodsStandard">
+                                                    <option selected>个</option>
+                                                    <option>台</option>
+                                                    <option>斤</option>
+                                                    <option>支</option>
+                                                    <option>把</option>
+                                                    <option>包</option>
+                                                    <option>袋</option>
+                                                    <option>张</option>
+                                                    <option>其他</option>
+                                                </select>
+                                            </li>
+                                            <li>
+                                                <select class="form-control" id="editGoodsInventorySituation">
+                                                    <option selected>库存充足</option>
+                                                    <option>库存数量少</option>
+                                                    <option>无货</option>
+                                                </select>
+                                            </li>
+                                        </url>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <input type="hidden" id="dataId" value="">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                                    <button type="button" class="btn btn-primary" onclick="edit()">保存</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     </tbody>
                 </table>
             </div>

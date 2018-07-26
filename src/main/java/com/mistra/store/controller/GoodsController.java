@@ -15,6 +15,7 @@ import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -23,7 +24,7 @@ import javax.servlet.http.HttpServletRequest;
  * Time: 2018/7/22/022
  * Describe:
  */
-@Controller
+@RestController
 @RequestMapping("/goods")
 public class GoodsController {
 

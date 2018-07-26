@@ -12,6 +12,8 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
+
 /**
  * Author: RoronoaZoro丶WangRui
  * Time: 2018/7/22/022
@@ -28,6 +30,7 @@ public class GoodsServiceImpl implements GoodsService {
 
     @Override
     public void add(Goods goods) {
+        goods.setCreateTime(new Date());
         goodsRepository.save(goods);
     }
 
