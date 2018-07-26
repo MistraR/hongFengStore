@@ -80,16 +80,18 @@ function save() {
         }
     });
 }
-function toEdit() {
+$("#editButton").click(function(){
+    var dataid = $(this).attr("data");
     $.ajax({
         type: "GET",
         url: "/goods/get",
         data: {
-            "id": $(this).data.val()
+            "id":dataid
         },
         success: function (result) {
-            $('#myModal').modal('show')
-            var good = result.content;
+            console.log(result);
+            $('#myEditModal').modal('show')
+            var good = result;
             $("#dataId").val(good.id);
             $("#editGoodsName").val(good.name);
             $("#editGoodsNumber").val(good.number);
@@ -100,7 +102,7 @@ function toEdit() {
             $("#editGoodsInventorySituation").val(good.inventorySituation);
         }
     });
-}
+});
 function edit() {
     $.ajax({
         type: "POST",
