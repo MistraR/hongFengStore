@@ -23,10 +23,20 @@ function flush() {
         }
     });
 }
+
 function page(value) {
-    var pageNumber = $("#pageNumber").val();
+    var pageNumber = $("#pageNumber").text() - 1;
+    var totalPages = $("#totalPages").text();
     if (value == 1) {
-        pageNumber = pageNumber - 2;
+        pageNumber = pageNumber - 1;
+    } else {
+        pageNumber = pageNumber + 1;
+    }
+    if (pageNumber < 0) {
+        pageNumber = 0;
+    }
+    if (pageNumber > totalPages - 1) {
+        pageNumber = totalPages - 1;
     }
     $.ajax({
         type: "POST",
@@ -40,6 +50,7 @@ function page(value) {
             "orderBy": "ASC"
         },
         success: function (result) {
+            $("#pageNumber").text(result.pageNumber + 1);
             renderGoodsList(result);
         }
     });
@@ -55,9 +66,9 @@ function renderGoodsList(data) {
             good.number + "</td><td>" +
             good.purchasePrice + "</td><td class='retailPriceColor'>" +
             good.retailPrice + "</td><td>" +
-            good.wholesalePrice +"</td><td>" +
-            good.standard + "</td><td>" + good.inventorySituation + "</td><td>" +good.createTime + "</td><td>"+
-            "<button type='button' class='btn btn-sm btn-danger btn-block editButton' type='button'  onclick='toEdit(this)' data-toggle='modal' data='"+good.id+"'>编辑</button></td>"
+            good.wholesalePrice + "</td><td>" +
+            good.standard + "</td><td>" + good.inventorySituation + "</td><td>" + good.createTime + "</td><td>" +
+            "<button type='button' class='btn btn-sm btn-danger btn-block editButton' type='button'  onclick='toEdit(this)' data-toggle='modal' data='" + good.id + "'>编辑</button></td>"
         $("#goodsListTable tbody").append(tr);
     }
 }
@@ -74,7 +85,7 @@ function save() {
             "wholesalePrice": $("#addGoodsWholesalePrice").val(),
             "retailPrice": $("#addGoodsRetailPrice").val(),
             "standard": $("#addGoodsStandard").val(),
-            "inventorySituation":$("#addGoodsInventorySituation").val()
+            "inventorySituation": $("#addGoodsInventorySituation").val()
         },
         success: function (result) {
             $("#addForm")[0].reset();
@@ -90,7 +101,7 @@ function toEdit(_this) {
         type: "GET",
         url: "/goods/get",
         data: {
-            "id":dataid
+            "id": dataid
         },
         success: function (result) {
             console.log(result);
@@ -113,14 +124,14 @@ function edit() {
         type: "POST",
         url: "/goods/update",
         data: {
-            "id":$("#dataId").val(),
+            "id": $("#dataId").val(),
             "name": $("#editGoodsName").val(),
             "number": $("#editGoodsNumber").val(),
             "purchasePrice": $("#editGoodsPurchasePrice").val(),
             "wholesalePrice": $("#editGoodsWholesalePrice").val(),
             "retailPrice": $("#editGoodsRetailPrice").val(),
             "standard": $("#editGoodsStandard").val(),
-            "inventorySituation":$("#editGoodsInventorySituation").val()
+            "inventorySituation": $("#editGoodsInventorySituation").val()
         },
         success: function (result) {
             $("#editForm")[0].reset();
