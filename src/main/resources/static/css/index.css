@@ -1,5 +1,5 @@
 #goodsListHeader {
-    margin: 20px auto 15px auto;
+    margin: 0 auto 15px auto;
 }
 
 #goodsListHeader span:first-child {
@@ -24,8 +24,12 @@
 #searchButton,#addButton {
     width: 115px;
 }
+#searchButton{
+    float: left;
+    margin-right: 15px;
+}
 
-#retailPriceColor {
+.retailPriceColor {
     color: red;
 }
 

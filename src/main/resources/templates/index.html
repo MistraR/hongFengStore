@@ -23,8 +23,6 @@
                 <input id="number" class="form-control" placeholder="商品编号" autofocus>
                 <input id="goodsName" class="form-control" placeholder="商品名称">
                 <button class="btn btn-md btn-success btn-block" type="button" id="searchButton">搜索</button>
-            </div>
-            <div>
                 <button class="btn btn-md btn-warning btn-block" type="button" id="addButton" data-toggle="modal"
                         data-target="#myModal">录入商品
                 </button>
@@ -108,13 +106,13 @@
                         <td th:text="${goods.number}"></td>
                         <!--<th th:text="${goods.category}"></th>-->
                         <th th:text="${goods.purchasePrice}"></th>
-                        <th th:text="${goods.retailPrice}" id="retailPriceColor"></th>
+                        <th th:text="${goods.retailPrice}" class="retailPriceColor"></th>
                         <th th:text="${goods.wholesalePrice}"></th>
                         <th th:text="${goods.standard}"></th>
                         <th th:text="${goods.inventorySituation}"></th>
                         <th th:text="${goods.createTime}"></th>
                         <th>
-                            <button class="btn btn-md btn-danger btn-block" type="button" id="editButton"
+                            <button class="btn btn-sm btn-danger btn-block editButton" type="button" onclick="toEdit(this)"
                                     th:data="${goods.id}"
                                     data-toggle="modal"
                             >编辑

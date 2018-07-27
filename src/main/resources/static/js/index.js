@@ -1,26 +1,28 @@
 $(function () {
     $("#searchButton").click(function (e) {
         e.preventDefault();
-        $.ajax({
-            type: "POST",
-            url: "/goods/listSelect",
-            data: {
-                "name": $("#goodsName").val(),
-                "number": $("#number").val(),
-                "pageNum": 0,
-                "pageSize": 10,
-                "order": "createTime",
-                "orderBy": "ASC"
-            },
-            success: function (result) {
-                renderGoodsList(result);
-            }
-        });
+        flush();
     });
-
 
 })
 
+function flush() {
+    $.ajax({
+        type: "POST",
+        url: "/goods/listSelect",
+        data: {
+            "name": $("#goodsName").val(),
+            "number": $("#number").val(),
+            "pageNum": 0,
+            "pageSize": 10,
+            "order": "createTime",
+            "orderBy": "ASC"
+        },
+        success: function (result) {
+            renderGoodsList(result);
+        }
+    });
+}
 function page(value) {
     var pageNumber = $("#pageNumber").val();
     if (value == 1) {
@@ -51,11 +53,11 @@ function renderGoodsList(data) {
         var good = data.content[i];
         var tr = "<tr><td>" + good.name + "</td><td>" +
             good.number + "</td><td>" +
-            good.purchasePrice + "</td><td>" +
+            good.purchasePrice + "</td><td class='retailPriceColor'>" +
             good.retailPrice + "</td><td>" +
             good.wholesalePrice +"</td><td>" +
             good.standard + "</td><td>" + good.inventorySituation + "</td><td>" +good.createTime + "</td><td>"+
-            "<button type='button' class='btn btn-md btn-danger btn-block' type='button' id='editButton' data-toggle='modal' data-target='#myEditModal'>编辑</button>"
+            "<button type='button' class='btn btn-sm btn-danger btn-block editButton' type='button'  onclick='toEdit(this)' data-toggle='modal' data='"+good.id+"'>编辑</button></td>"
         $("#goodsListTable tbody").append(tr);
     }
 }
@@ -77,11 +79,13 @@ function save() {
         success: function (result) {
             $("#addForm")[0].reset();
             $('#myModal').modal('hide')
+            flush();
         }
     });
 }
-$("#editButton").click(function(){
-    var dataid = $(this).attr("data");
+
+function toEdit(_this) {
+    var dataid = $(_this).attr("data");
     $.ajax({
         type: "GET",
         url: "/goods/get",
@@ -102,7 +106,8 @@ $("#editButton").click(function(){
             $("#editGoodsInventorySituation").val(good.inventorySituation);
         }
     });
-});
+}
+
 function edit() {
     $.ajax({
         type: "POST",
@@ -120,6 +125,7 @@ function edit() {
         success: function (result) {
             $("#editForm")[0].reset();
             $('#myEditModal').modal('hide')
+            flush();
         }
     });
 }

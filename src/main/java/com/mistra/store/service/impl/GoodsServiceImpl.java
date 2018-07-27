@@ -46,6 +46,7 @@ public class GoodsServiceImpl implements GoodsService {
 
     @Override
     public void update(Goods goods) {
+        goods.setCreateTime(goodsRepository.findById(goods.getId()).get().getCreateTime());
         goodsRepository.save(goods);
     }
 
