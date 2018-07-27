@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 /**
  * Author: RoronoaZoro丶WangRui
  * Time: 2018/7/22/022
- * Describe:
+ * Describe: g
  */
 public interface GoodsCategoryRepository extends JpaRepository<GoodsCategory,Long> {
 }
